@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    justify-content: space-evenly;
+    background-color: rgb(20, 19, 19);
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    margin-left: 25rem;
+    color: #fff;
+    font-size: 20px;
+}
