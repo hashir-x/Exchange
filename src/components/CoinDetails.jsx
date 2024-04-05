@@ -60,7 +60,7 @@ function CoinDetails() {
               </div>
               <div className="coin-profit">
                 {profit ? <BiSolidUpArrow color='green' /> : <BiSolidDownArrow color='red' />  }
-                  {coin?.market_data?.price_change_percentage_24h} % 
+                  {(coin?.market_data?.price_change_percentage_24h).toFixed(2)} % 
               </div>
               <div className='market-rank'>
                #{coin?.market_cap_rank}

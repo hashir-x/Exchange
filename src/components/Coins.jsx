@@ -11,6 +11,8 @@ function Coins() {
 
   const [coins,setCoins] = useState([])
 
+  const [search,setSearch] = useState('')
+
   const [currency,setCurrency] = useState('inr')
 
   const currencySymbol = currency === "inr" ? '₹' : '$';
@@ -33,12 +35,21 @@ function Coins() {
       {
         loading ? <Loader/> : <>
         <Headers/>
+        <div className="search-bar">
+          <input onChange={(e)=>setSearch(e.target.value)} type="text" placeholder='Search for coins' style={{position:'absolute',top:"1%",left:'35%',height:'2rem',width:'20rem',paddingLeft:"5px"}}/>
+        </div>
         <div className="btn">
           <button onClick={()=>setCurrency('inr')}>inr</button>
           <button onClick={()=>setCurrency('usd')}>usd</button>
         </div>
         {
-          coins?.map((coindata,i)=>(
+          coins?.filter((value)=>{
+            if(value == ''){
+              return value;
+            }else if (value.name.toLowerCase().includes(search.toLocaleLowerCase())){
+              return value;
+            }
+          }).map((coindata,i)=>(
             <CoinCard coindata={coindata} i={i} id={coindata.id} currencySymbol={currencySymbol}/>
           ))
         }
@@ -62,7 +73,7 @@ const CoinCard = ({coindata,i,currencySymbol,id}) =>{
                 {coindata?.name}
               </div>
               <div className="price">
-                {currencySymbol}{coindata?.current_price}
+                {currencySymbol}{Number(coindata?.current_price).toLocaleString()}
               </div>
               <div style={profit ? {color:"green"} : {color:'red'}} className="rank">
                 {profit ? "+" + coindata?.price_change_percentage_24h.toFixed(2) : coindata?.price_change_percentage_24h.toFixed(2)}

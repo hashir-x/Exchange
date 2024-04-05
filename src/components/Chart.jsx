@@ -35,7 +35,6 @@ function Chart() {
   const fetchData = async () => {
     try {
       const {data} = await call.get(fetchUrl)
-      // console.log(data.prices);
       setChart(data.prices)
 
     } catch (error) {
@@ -48,14 +47,14 @@ function Chart() {
   },[])
 
   const myData ={
-    lables:chartData.map((value)={
+    labels: chart.map((value)=>{
       console.log(value);
     })
   }
 
   return (
     <>
-       <Line data={myData}/> 
+       {/* <Line data={myData}/>  */}
     </>
   )
 }
